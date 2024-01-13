@@ -374,7 +374,7 @@ form input, form textarea{
     background: #1b382f;
     padding: 15px;
     margin: 15px 0;
-    color: #1b382f;
+    color: #eff2f1;
     font-size: 18px;
     border-radius: 6px;
 }
@@ -451,6 +451,10 @@ nav .fa-solid{
           margin-right: 20px;          
      }  
      .contact-left, .contact-right{
-        flex-basis: 100%;           
+        flex-basis: 100%;     
+         
      } 
 }
+.contact-right{
+    text-decoration-color: white;
+} 
