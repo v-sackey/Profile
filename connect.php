@@ -1,22 +1,52 @@
 <?php
-$NAME = $_POST['Name'];
-$EMAIL = $_POST['Email']; 
-$Yourmessage = $_POST['Message'];   
+$Name= filter_input(INPUT_POST, 'Name');
+$Email= filter_input(INPUT_POST, 'Email');  
+$Message= filter_input(INPUT_POST, 'Message');  
 
-// Database Connection
-$conn = new mysqli('localhost','root', '', 'website');
-if($conn->connect_error ){
-    die('Connection Failed : '.$conn->connect_error);
+if(!empty($Name)){
+if(!empty($Email)){
+if(!empty($Message)){    
+    $host = "localhost";
+    $dbusername = "root";
+    $dbpassword = "";
+    $dbname = 'website';
+
+    // Create connection
+    $dbname = 'website';
+    $conn = new mysqli ($host, $dbusername, $dbpassword, $dbname);
+
+    if(mysqli_connect_error()){
+       die('Connect Error('.mysqli_connect_errno().')'
+       .mysqli_connect_error());     
+    }
+       else{
+       $sql = "INSERT INTO contact(Name,Email,Message)
+       values('$Name', '$Email', '$Message')";
+       if($conn->query($sql)){
+        echo"Message sent. ";
+    
+}  
+else {
+    echo"Error" . $sql .<br> . $conn->error;
+    }  
+conn->close();
+}     
+}      
+    
+    } 
+    else {
+        echo"Please leave a message. ";
+        die(); 
+    
+}  
+}    
+    else {
+        echo"Email should be filled.";
+        die(); 
+    
 } 
-else{
-    echo "connectio established";
-    // 
-    // $stmt = $conn->prepare("insert into contact right(Name, Email, Message)
-    // values(?,?,?)");
-    // $stmt->bind_param("sss", $Name, $Email, $Message);
-    // $stmt->execute();
-    // echo "Message received";
-    // $stmt-> close();
-    // $conn->close();
 } 
-?>
+else {
+    echo"Name should be filled.";
+    die();
+} 
